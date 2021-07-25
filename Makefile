@@ -1,5 +1,6 @@
-YML	= ./srcs/docker-compose.yaml
-VLMS	= ./.data/wp/* ./.data/db/*
+NAME = inception
+YAML	= ./srcs/docker-compose.yaml
+VLMS	= /home/enena/data/wp /home/enena/data/db
 
 clean:
 	-sudo docker volume rm $$(sudo docker volume ls -q)
@@ -27,10 +28,10 @@ info:
 	@sudo docker network ls
 
 up:
-	sudo docker-compose -f $(YML) up
+	sudo docker-compose -f $(YAML) up
 
 re: clean
-	sudo docker-compose -f $(YML) up --build
+	sudo docker-compose -f $(YAML) up --build
 
 down:
-	sudo docker-compose  -f $(YML) down
+	sudo docker-compose  -f $(YAML) down

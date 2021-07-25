@@ -7,6 +7,6 @@ define( 'DB_CHARSET', 'utf8' );
 define( 'WP_DEBUG', true );
 define( 'WP-DEBUG_LOG', true );
 define( 'WP_DEBUG_DISPLAY', false );
-
-$table_prefix = _WORDPRESS_TABLE_PREFIX;
+	
+$table_prefix = _WP_TABLE_PREFIX;
 require_once(ABSPATH . 'wp-settings.php');

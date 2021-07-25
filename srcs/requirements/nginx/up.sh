@@ -4,6 +4,4 @@ if [ ! -d /etc/ssl/private/inception.key ]; then
         -keyout /etc/ssl/private/inception.key -out /etc/ssl/certs/inception.crt
     mv ./nginx.conf /etc/nginx/
 fi
-chmod 777 etc/nginx/nginx.conf
-bash
-exec "$@"
+exec nginx -g 'daemon off;'

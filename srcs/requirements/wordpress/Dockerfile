@@ -1,18 +1,20 @@
+#Base image
 FROM debian:buster
-
-RUN apt update
-RUN apt -y upgrade
-RUN apt -y install vim              \
-            php-fpm php-mysql       \
-            php-mbstring php-gd     \
-            redis-server php-redis  \
-            wget
-
-COPY start.sh ./
-RUN chmod 700 ./start.sh
-
-COPY wp-config.php ./
-RUN chmod 700 /wp-config.php
-
-ENTRYPOINT [ "./start.sh" ]
-CMD [ "/usr/sbin/php-fpm7.3", "--nodaemonize" ]
+#I'm author of this and I DNK why you should know this
+LABEL maintainer="Eiji Nena <enena@student.21-school.ru>"
+#Script for up this container
+ADD up.sh ./
+#Template configuration file wordpress
+ADD wp-config.php ./
+#UPDATE!UPGRADE!PRAY FOR VIM!
+RUN apt-get update && apt-get -y upgrade && apt-get -y install vim && \
+#All things for PHP and wget for CLI(that setup WP easy)
+	apt-get -y install	php7.3		\
+						php7.3-fpm	\
+						php7.3-mysql\
+						php7.3-xml	\
+						wget &&		\
+#Give user permission for all:)
+	chmod 700 wp-config.php up.sh
+#Of course, if you need to raise it, you need to run UP-SCRIPT
+ENTRYPOINT [ "./up.sh" ]
