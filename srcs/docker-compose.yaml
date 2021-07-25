@@ -36,7 +36,7 @@ services:
         expose:
             - "9000"
         env_file: .env
-    mysql:
+    mariadb:
         image: mariadb
         build:
             context: ./requirements/mariadb/
@@ -46,11 +46,10 @@ services:
         volumes:
             - mariadb:/var/lib/mysql
         networks:
-                - enena_network
+            - enena_network
         expose:
             - "3306"
         env_file: .env
-
 
 volumes:
     wordpress:
