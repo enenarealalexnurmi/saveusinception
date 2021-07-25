@@ -17,13 +17,12 @@ chmod -R 755 /var/www/*
     sed -i "s/_MYSQL_HOST/'$MYSQL_HOST'/g" /wp-config.php
     sed -i "s/_WP_TABLE_PREFIX/'$WP_TABLE_PREFIX'/g" /wp-config.php
     mv /wp-config.php /var/www/html/
-    wp core install						\
-		--allow-root					\
-		--url=$WP_URL 					\
-		--title=$WP_TITLE_SITE			\
-        --admin_user=$WP_ADMIN_LOGIN	\
-        --admin_password=$WP_ADMIN_PASS	\
-        --admin_email=$WP_ADMIN_MAIL
+    wp core install --allow-root \
+	--url=$WP_URL \
+	--title=$WP_TITLE_SITE \
+	--admin_user=$WP_ADMIN_LOGIN \
+	--admin_password=$WP_ADMIN_PASS \
+	--admin_email=$WP_ADMIN_EMAIL
     wp user create --allow-root $WP_SECOND_USER_LOGIN $WP_SECOND_USER_EMAIL --user_pass=$WP_SECOND_USER_PASS
 #fi
 exec php-fpm7.3 -F
