@@ -18,13 +18,13 @@ reup: clean all
 rebuild: fclean all
 
 clean: down
+	-sudo docker rm $$(cd ./srcs/ && sudo docker-compose ps -q)
 	-sudo docker volume rm $$(sudo docker volume ls -q)
-	-sudo docker rmi -f $$(sudo docker images -qa)
 	-sudo docker network rm $$(sudo docker network ls -q)
 
 fclean: clean
 	sudo rm -rf $(VLMS)
-	-sudo docker rm $$(cd ./srcs/ && sudo docker-compose ps -q)
+	-sudo docker rmi -f $$(sudo docker images -qa)
 	
 info:
 	@echo "**** IMAGES **** "
