@@ -13,6 +13,6 @@ ADD up.sh ./
 #Template configuration file wordpress
 ADD wp-config.php ./
 #Give user permission for all:)
-RUN chmod 700 wp-config.php up.sh
+RUN chmod 755 wp-config.php up.sh
 #Of course, if you need to raise it, you need to run UP-SCRIPT
 ENTRYPOINT [ "./up.sh" ]
