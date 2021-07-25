@@ -21,13 +21,9 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 		--allow-root					\
 		--url=$WP_URL 					\
 		--title=$WP_TITLE_SITE			\
-        --admin_user=$WP_ADMIN_NICK		\
+        --admin_user=$WP_ADMIN_LOGIN	\
         --admin_password=$WP_ADMIN_PASS	\
         --admin_email=$WP_ADMIN_MAIL
-    wp user create						\
-		--allow-root					\
-		$WP_SECOND_USER_LOGIN			\
-		$WP_SECOND_USER_EMAIL			\
-		--user_pass=$WP_SECOND_USER_PASS
+    wp user create --allow-root $WP_SECOND_USER_LOGIN $WP_SECOND_USER_EMAIL --user_pass=$WP_SECOND_USER_PASS
 fi
 exec php-fpm7.3 -F
