@@ -3,12 +3,12 @@ YAML	= ./srcs/docker-compose.yaml
 VLMS	= /home/enena/data/wp/* /home/enena/data/db/*
 
 $(NAME):
-	sudo docker-compose -f $(YAML) up --build
+	sudo docker-compose -f $(YAML) up -d --build
 
 all: $(NAME)
 
 up:
-	sudo docker-compose -f $(YAML) up
+	sudo docker-compose -f $(YAML) up -d
 
 down:
 	sudo docker-compose  -f $(YAML) down
