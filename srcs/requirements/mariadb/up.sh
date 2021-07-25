@@ -9,13 +9,7 @@ if [ ! -d var/lib/mysql/$MYSQL_DB_NAME ]; then
 	mysql -u root -h localhost -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'"
 	mysql -u root -h localhost -e "GRANT ALL PRIVILEGES ON $MYSQL_DB_NAME.* TO '$MYSQL_USER'@'%'"
 	mysql -u root -h localhost -e "FLUSH PRIVILEGES"
-	mysqladmin -u root password $ROOT_PASS
 	service mysql stop
-fi
-if [ ! -d /var/run/mysqld ]; then
-	mkdir /var/run/mysqld
-	touch /var/run/mysqld/mysqld.pid
-	mkfifo /var/run/mysqld/mysqld.sock
-	chown -R mysql /var/run/mysqld
+	mysqladmin -u root password $ROOT_PASS
 fi
 exec mysqld
