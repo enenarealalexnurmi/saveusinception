@@ -4,11 +4,11 @@ chown -R mysql:mysql /var/lib/mysql
 if [ ! -d var/lib/mysql/$MYSQL_DB_NAME ]; then
 	service mysql start
 	chmod 700 /var/run/mysqld/mysqld.sock
+	mysql -u root -h localhost -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DB_NAME"
+	mysql -u root -h localhost -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'"
+	mysql -u root -h localhost -e "GRANT ALL PRIVILEGES ON $MYSQL_DB_NAME.* TO '$MYSQL_USER'@'%'"
+	mysql -u root -h localhost -e "FLUSH PRIVILEGES"
 	mysqladmin -u root password $ROOT_PASS
-	mysql -u root -p$ROOT_PASS -h localhost -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DB_NAME"
-	mysql -u root -p$ROOT_PASS -h localhost -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'"
-	mysql -u root -p$ROOT_PASS -h localhost -e "GRANT ALL PRIVILEGES ON $MYSQL_DB_NAME.* TO '$MYSQL_USER'@'%'"
-	mysql -u root -p$ROOT_PASS -h localhost -e "FLUSH PRIVILEGES"
 	service mysql stop
 fi
 if [ ! -d /var/run/mysqld ]; then
