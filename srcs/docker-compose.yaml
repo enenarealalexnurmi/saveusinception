@@ -1,5 +1,5 @@
 version: '3.7'
-networks:	
+networks:
 	enena_network:
 		name: enena_network
 		driver: bridge
@@ -7,38 +7,38 @@ networks:
 services:
 	nginx:
 		image: nginx
-		build: 
+		build:
 			context: ./requirements/nginx/
 			dockerfile: Dockerfile
 		container_name: nginx
 		restart: always
 		volumes:
 			- wordpress:/var/www/html
-		networks: 
+		networks:
 			- enena_network
-		ports: 
+		ports:
 			- 443:443
-		depends_on: 
+		depends_on:
 			- wordpress
 	wordpress:
 		image: wordpress
-		build: 
+		build:
 			context: ./requirements/wordpress/
 			dockerfile: Dockerfile
 		container_name: wordpress
 		restart: always
 		volumes:
 			- wordpress:/var/www/html
-		networks: 
+		networks:
 			- enena_network
-			depends_on: 
-				- mysql
-				expose: 
-					- "9000"
+		depends_on: 
+			- mysql
+		expose:
+			- "9000"
 		env_file: .env
 	mysql:
 		image: mariadb
-		build: 
+		build:
 			context: ./requirements/mariadb/
 			dockerfile: Dockerfile
 		container_name: mariadb
@@ -47,7 +47,7 @@ services:
 			- mariadb:/var/lib/mysql
 		networks:
 				- enena_network
-		expose: 
+		expose:
 			- "3306"
 		env_file: .env
 
@@ -56,14 +56,14 @@ volumes:
 	wordpress:
 		driver: local
 		name: wordpress
-		driver_opts: 
+		driver_opts:
 			type: none
 			o: bind
 			device: /home/enena/data/wp
 	mariadb:
 		driver: local
 		name: mariadb
-		driver_opts: 
+		driver_opts:
 			type: none
 			o: bind
 			device: /home/enena/data/db
