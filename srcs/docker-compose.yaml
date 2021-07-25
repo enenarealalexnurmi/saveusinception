@@ -32,7 +32,7 @@ services:
         networks:
             - enena_network
         depends_on: 
-            - mysql
+            - mariadb
         expose:
             - "9000"
         env_file: .env
