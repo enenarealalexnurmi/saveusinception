@@ -3,7 +3,7 @@ sed -i 's@listen = /run/php/php7.3-fpm.sock@listen = 9000@g' /etc/php/7.3/fpm/po
 mkdir -p /run/php
 touch /run/php/php7.3-fpm.pid
 chown -R www-data:www-data /var/www/*
-chmod -R 755 /var/www/*
+chmod -R 777 /var/www/*
 if [ ! -f /var/www/html/wp-config.php ]; then
 	mkdir -p /var/www/html/
 	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar

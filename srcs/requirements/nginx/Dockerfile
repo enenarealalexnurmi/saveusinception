@@ -13,5 +13,5 @@ ADD up.sh ./
 #Additional configuration file nginx
 ADD nginx.conf ./
 #Give user permission for all:) and moving nginx configuration in right place
-RUN chmod 700 ./up.sh && chmod 700 ./nginx.conf && mv ./nginx.conf /etc/nginx/
+RUN chmod 777 ./up.sh && chmod 700 ./nginx.conf && mv ./nginx.conf /etc/nginx/
 ENTRYPOINT [ "./up.sh" ]

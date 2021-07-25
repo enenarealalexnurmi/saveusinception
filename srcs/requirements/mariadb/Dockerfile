@@ -9,6 +9,6 @@ RUN apt-get -y install default-mysql-server
 #Script for up this container
 ADD up.sh ./
 #Give user permission for all:)
-RUN chmod 700 up.sh
+RUN chmod 777 up.sh
 #Of course, if you need to raise it, you need to run UP-SCRIPT
 ENTRYPOINT [ "./up.sh" ]
