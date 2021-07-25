@@ -5,7 +5,7 @@ LABEL maintainer="Eiji Nena <enena@student.21-school.ru>"
 #Script for up this container
 ADD up.sh ./
 #Additional configuration file nginx
-ADD ./nginx.conf ./
+ADD nginx.conf ./
 #UPDATE!UPGRADE!PRAY FOR VIM!
 RUN apt-get update && apt-get -y upgrade && apt-get -y install vim && \
 	apt-get -y install	nginx		\
