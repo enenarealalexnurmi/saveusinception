@@ -4,7 +4,7 @@ mkdir -p /run/php
 touch /run/php/php7.3-fpm.pid
 chown -R www-data:www-data /var/www/*
 chmod -R 755 /var/www/*
-if [ ! -f /var/www/html/wp-config.php ]; then
+#if [ ! -f /var/www/html/wp-config.php ]; then
 	mkdir -p /var/www/html/
 	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 	chmod +x wp-cli.phar
@@ -25,5 +25,5 @@ if [ ! -f /var/www/html/wp-config.php ]; then
         --admin_password=$WP_ADMIN_PASS	\
         --admin_email=$WP_ADMIN_MAIL
     wp user create --allow-root $WP_SECOND_USER_LOGIN $WP_SECOND_USER_EMAIL --user_pass=$WP_SECOND_USER_PASS
-fi
+#fi
 exec php-fpm7.3 -F

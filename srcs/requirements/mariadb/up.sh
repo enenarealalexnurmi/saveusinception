@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 sed -i 's/bind-ad/#bind-ad/g' /etc/mysql/mariadb.conf.d/50-server.cnf
-sed -i 's/#port/port /g' /etc/mysql/mariadb.conf.d/50-server.cnf
 chown -R mysql:mysql /var/lib/mysql
 if [ ! -d var/lib/mysql/$MYSQL_DB_NAME ]; then
 	service mysql start
